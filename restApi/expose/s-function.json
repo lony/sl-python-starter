@@ -2,7 +2,7 @@
   "name": "expose",
   "customName": false,
   "customRole": false,
-  "handler": "expose.handler.handler",
+  "handler": "expose/handler.handler_func",
   "timeout": 6,
   "memorySize": 1024,
   "custom": {

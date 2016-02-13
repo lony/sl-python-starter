@@ -17,24 +17,24 @@ sys.path.append(os.path.join(here, "../vendored"))
 # referenced as `lib.something`
 import lib
 # https://github.com/jkehler/awslambda-psycopg2
-import lib.psycopg2
+import psycopg2
 
 
-def handler(event, context):
+def handler_func(event, context):
     log.debug("Received event {}".format(json.dumps(event)))
 
-    conn = lib.psycopg2.connect(
-            host="HOST",
-            user="USER",
-            password="PW",
-            database="DB",
+    conn = psycopg2.connect(
+            host="host",
+            user="username",
+            password="password",
+            database="database",
     )
 
     with conn.cursor() as c:
         # Get total
-        c.execute("""SELECT Count(*) FROM expose""")
+        c.execute("""SELECT Count(*) FROM people""")
         sum = c.fetchone()[0]  # first row, and column
 
     conn.commit()
     conn.close()
-    return json.dumps(event, sum)
+    return json.dumps(sum)
